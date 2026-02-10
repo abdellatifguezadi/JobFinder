@@ -13,20 +13,25 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000';
 
   login(request: LoginRequest): Observable<AuthResponse> {
-    return this.http.get<AuthResponse[]>(`${this.apiUrl}/users?email=${request.email}&password=${request.password}`)
+    return this.http
+      .get<
+        AuthResponse[]
+      >(`${this.apiUrl}/users?email=${request.email}&password=${request.password}`)
       .pipe(
-        map(users => {
+        map((users) => {
           if (users.length > 0) {
             return users[0];
           } else {
             throw new Error('Invalid credentials');
           }
         }),
-        catchError(error => {
+        catchError((error) => {
           return throwError(() => new Error('Invalid credentials'));
-        })
+        }),
       );
   }
 
-
+  register(request: RegisterRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/users`, request);
+  }
 }

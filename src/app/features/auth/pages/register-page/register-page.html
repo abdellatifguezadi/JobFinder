@@ -1,1 +1,75 @@
-<p>register-page works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+  <div class="w-full max-w-md border-2 border-black bg-white p-8 shadow-[8px_8px_0_black]">
+    <div class="border-b-2 border-black pb-4 mb-6">
+      <h2 class="text-2xl font-bold text-black">Register</h2>
+      <p class="text-sm text-black mt-1">Create your account to get started</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <app-form-input
+        label="First Name"
+        type="text"
+        id="firstName"
+        [control]="$any(registerForm.get('firstName'))"
+        placeholder="Enter your first name"
+        icon="person"
+        errorMessage="First name is required"
+      />
+
+      <app-form-input
+        label="Last Name"
+        type="text"
+        id="lastName"
+        [control]="$any(registerForm.get('lastName'))"
+        placeholder="Enter your last name"
+        icon="person"
+        errorMessage="Last name is required"
+      />
+
+      <app-form-input
+        label="Email Address"
+        type="email"
+        id="email"
+        [control]="$any(registerForm.get('email'))"
+        placeholder="Enter your email"
+        icon="email"
+        errorMessage="Valid email is required"
+      />
+
+      <app-form-input
+        label="Password"
+        type="password"
+        id="password"
+        [control]="$any(registerForm.get('password'))"
+        placeholder="Enter your password"
+        icon="lock"
+        errorMessage="Password is required"
+      />
+
+      @if (errorMessage$ | async; as error) {
+        <div class="bg-red-100 border-2 border-red-600 text-red-600 px-4 py-3 font-semibold text-sm">
+          <span class="flex items-center gap-2">
+            <span class="material-icons text-base">error</span>
+            {{ error }}
+          </span>
+        </div>
+      }
+
+      <app-form-button
+        text="Register"
+        type="submit"
+        icon="person_add"
+        [disabled]="registerForm.invalid"
+        [isLoading]="(isLoading$ | async) || false"
+        loadingText="Creating account..."
+      />
+
+      <div class="text-center pt-4 border-t-2 border-black mt-6">
+        <p class="text-sm text-black">
+          Already have an account? 
+          <a routerLink="/login" class="font-bold underline hover:text-gray-700">Login here</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

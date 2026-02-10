@@ -31,7 +31,27 @@ export class AuthEffects {
     );
   });
 
-
+  register$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(authAction.register),
+      exhaustMap((action) =>
+        this.authservice.register(action.request).pipe(
+          map((response) =>
+            authAction.registerSucces({
+              user: response,
+            }),
+          ),
+          catchError((error) => {
+            return of(
+              authAction.registerFailure({
+                error: 'Register Failure',
+              }),
+            );
+          }),
+        ),
+      ),
+    );
+  });
 
   saveUser$ = createEffect(
     () =>
