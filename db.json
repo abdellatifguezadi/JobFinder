@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "abdellatif",
+      "lastName": "guezadi",
+      "email": "abdellatif@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "firstName": "samira",
+      "lastName": "guezadi",
+      "email": "samira@test.com",
+      "password": "password"
+    },
+    {
+      "id": 3,
+      "firstName": "leila",
+      "lastName": "guezadi",
+      "email": "leila@test.com",
+      "password": "123456"
+    },
+    {
+      "id": 4,
+      "firstName": "hafida",
+      "lastName": "guezadi",
+      "email": "hafida@test.com",
+      "password": "123456"
+    },
+    {
+      "email": "vowy@mailinator.com",
+      "password": "123456",
+      "lastName": "Gamble",
+      "firstName": "Beverly",
+      "id": 5
+    }
+  ],
+  "favoritesOffers": [
+    {
+      "id": 1,
+      "userId": 1,
+      "offerId": "adzuna-101",
+      "title": "Angular Frontend Developer",
+      "company": "Tech Solutions",
+      "location": "Casablanca"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "offerId": "remotive-202",
+      "title": "Full Stack Java Developer",
+      "company": "Remote Corp",
+      "location": "Remote"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "offerId": "adzuna-303",
+      "title": "Junior Web Developer",
+      "company": "Startup Hub",
+      "location": "Rabat"
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "offerId": "adzuna-101",
+      "apiSource": "adzuna",
+      "title": "Angular Frontend Developer",
+      "company": "Tech Solutions",
+      "location": "Casablanca",
+      "url": "https://example.com/jobs/angular-frontend",
+      "status": "en_attente",
+      "notes": "Candidature envoyée via LinkedIn. Relancer après 2 semaines.",
+      "dateAdded": "2026-02-10T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "offerId": "remotive-202",
+      "apiSource": "remotive",
+      "title": "Full Stack Java Developer",
+      "company": "Remote Corp",
+      "location": "Remote",
+      "url": "https://example.com/jobs/fullstack-java",
+      "status": "accepté",
+      "notes": "Entretien technique réussi.",
+      "dateAdded": "2026-02-08T14:15:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "offerId": "adzuna-303",
+      "apiSource": "adzuna",
+      "title": "Junior Web Developer",
+      "company": "Startup Hub",
+      "location": "Rabat",
+      "url": "https://example.com/jobs/junior-web",
+      "status": "refusé",
+      "notes": "",
+      "dateAdded": "2026-02-05T09:00:00Z"
+    }
+  ]
+}

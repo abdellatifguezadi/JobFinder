@@ -1,1 +1,55 @@
-<p>login-page works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+  <div class="w-full max-w-md border-2 border-black bg-white p-8 shadow-[8px_8px_0_black]">
+    <div class="border-b-2 border-black pb-4 mb-6">
+      <h2 class="text-2xl font-bold text-black">Login</h2>
+      <p class="text-sm text-black mt-1">Enter your credentials to continue</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <app-form-input
+        label="Email Address"
+        type="email"
+        id="email"
+        [control]="$any(loginForm.get('email'))"
+        placeholder="Enter your email"
+        icon="email"
+        errorMessage="Valid email is required"
+      />
+
+      <app-form-input
+        label="Password"
+        type="password"
+        id="password"
+        [control]="$any(loginForm.get('password'))"
+        placeholder="Enter your password"
+        icon="lock"
+        errorMessage="Password is required"
+      />
+
+      @if (errorMessage$ | async; as error) {
+        <div class="bg-red-100 border-2 border-red-600 text-red-600 px-4 py-3 font-semibold text-sm">
+          <span class="flex items-center gap-2">
+            <span class="material-icons text-base">error</span>
+            {{ error }}
+          </span>
+        </div>
+      }
+
+      <app-form-button
+        text="Login"
+        type="submit"
+        icon="login"
+        [disabled]="loginForm.invalid"
+        [isLoading]="(isLoading$ | async) || false"
+        loadingText="Logging in..."
+      />
+
+      <div class="text-center pt-4 border-t-2 border-black mt-6">
+        <p class="text-sm text-black">
+          Don't have an account? 
+          <a routerLink="/register" class="font-bold underline hover:text-gray-700">Register here</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
