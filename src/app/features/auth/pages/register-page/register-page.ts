@@ -5,8 +5,8 @@ import { FormInputComponent } from "../../../../shared/components/form-input/for
 import { FormButtonComponent } from "../../../../shared/components/form-button/form-button";
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import * as authSelectors from '../../store/auth.selectors';
-import * as authActions from '../../store/auth.actions';
+import * as authSelectors from '../../../../core/store/auth/auth.selectors';
+import * as authActions from '../../../../core/store/auth/auth.actions';
 import { RouterLink } from '@angular/router';
 
 

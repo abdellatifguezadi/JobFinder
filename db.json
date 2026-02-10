@@ -34,6 +34,20 @@
       "lastName": "Gamble",
       "firstName": "Beverly",
       "id": 5
+    },
+    {
+      "email": "pomisyha@mailinator.com",
+      "password": "123456",
+      "lastName": "Briggs",
+      "firstName": "Colorado",
+      "id": 6
+    },
+    {
+      "email": "hogole@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "lastName": "Barrett",
+      "firstName": "Olga",
+      "id": 7
     }
   ],
   "favoritesOffers": [

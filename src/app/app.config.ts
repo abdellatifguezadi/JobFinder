@@ -6,8 +6,8 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { usaJobsApiInterceptor } from './core/interceptors/UsaJobs-api.interceptor';
-import { authReducer } from './features/auth/store/auth.reducer';
-import { AuthEffects } from './features/auth/store/auth.effects';
+import { authReducer } from './core/store/auth/auth.reducer';
+import { AuthEffects } from './core/store/auth/auth.effects';
 
 
 
