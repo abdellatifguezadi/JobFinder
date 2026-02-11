@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAuthLoading, selectUser } from '../../../../core/store/auth/auth.selectors';
+import { selectAuthError, selectAuthLoading, selectUser } from '../../../../core/store/auth/auth.selectors';
 import { AsyncPipe } from '@angular/common';
 import { User } from '../../../../core/model/user';
-import { updateUser } from '../../../../core/store/auth/auth.actions';
+import { changePassword } from '../../../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'app-password-form',
@@ -22,6 +22,7 @@ export class PasswordForm {
   passwordForm : FormGroup;
   loading$ : Observable<boolean>;
   user$ : Observable<User | null>;
+  error$ : Observable<string | null>;
   private currentUser: User | null = null;
 
   private passwordsMatchValidator = (group: FormGroup) => {
@@ -34,6 +35,7 @@ export class PasswordForm {
 
     this.loading$ = this.store.select(selectAuthLoading);
     this.user$ = this.store.select(selectUser);
+    this.error$ = this.store.select(selectAuthError);
 
     this.passwordForm = this.fb.group({
       currentPassword : ['', [Validators.required]],
@@ -49,20 +51,8 @@ export class PasswordForm {
 
   onPasswordSubmit(){
     if (this.passwordForm.valid && this.currentUser) {
-      const formValue = this.passwordForm.value;
-
-      if (formValue.currentPassword !== this.currentUser.password) {
-        this.passwordForm.get('currentPassword')?.setErrors({ incorrect: true });
-        return;
-      }
-
-      const updatedUser: User = {
-        ...this.currentUser,
-        password: formValue.newPassword
-      };
-
-      this.store.dispatch(updateUser({ user: updatedUser }));
-
+      const { currentPassword, newPassword } = this.passwordForm.value;
+      this.store.dispatch(changePassword({ userId: this.currentUser.id, oldPassword: currentPassword, newPassword: newPassword }));
       this.passwordForm.reset();
     }
   }

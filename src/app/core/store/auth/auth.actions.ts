@@ -3,12 +3,10 @@ import { LoginRequest } from "../../dto/login-request";
 import { User } from "../../model/user";
 import { RegisterRequest } from "../../dto/register-request";
 
-
 export const login = createAction(
     '[login] login',
     props<{ credentials: LoginRequest }>()
 );
-
 
 export const loginSucces = createAction(
     '[login] login succes',
@@ -21,12 +19,10 @@ export const loginFailure = createAction(
     props<{error : string}>()
 );
 
-
 export const register = createAction(
     '[register] register',
     props<{ request: RegisterRequest }>()
 );
-
 
 export const registerSucces = createAction(
     '[register] register succes',
@@ -38,8 +34,6 @@ export const registerFailure = createAction(
     '[register] register failure ',
     props<{error : string}>()
 );
-
-
 
 export const  logout = createAction(
     '[logout]  logout' 
@@ -58,6 +52,19 @@ export const updateUserSuccess = createAction(
 export const updateUserFailure = createAction(
     '[updateUser] update user failure',
     props<{ error: string }>()
+);
+
+export const changePassword = createAction(
+    '[Auth] Change Password',
+    props<{ userId: number, oldPassword: string, newPassword: string }>()
+);
+export const changePasswordSuccess = createAction(
+    '[Auth] Change Password Success'
+);
+
+export const changePasswordFailure = createAction(
+    '[Auth] Change Password Failure',
+    props<{ error: string }>() 
 );
 
 

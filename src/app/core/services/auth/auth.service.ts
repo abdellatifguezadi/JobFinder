@@ -52,4 +52,19 @@ export class AuthService {
     return this.http.put<AuthResponse>(`${this.apiUrl}/users/${user.id}`, user);
   }
 
+  changePassword(userId: number, oldPassword: string, newPassword: string): Observable<AuthResponse> {
+    return this.http.get<AuthResponse[]>(`${this.apiUrl}/users?id=${userId}&password=${oldPassword}`).pipe(
+      switchMap((users) => {
+        if (users.length > 0) {
+          const userToUpdate = { ...users[0], password: newPassword };
+          return this.http.put<AuthResponse>(`${this.apiUrl}/users/${userId}`, userToUpdate);
+        } else {
+          return throwError(() => new Error('Invalid old password'));
+        }
+      }),
+      catchError((error) => {
+        return throwError(() => new Error('Invalid old password'));
+      })
+    );
+  }
 }

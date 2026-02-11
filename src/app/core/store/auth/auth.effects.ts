@@ -106,4 +106,23 @@ export class AuthEffects {
     );
   });
 
+  changePassword$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(authAction.changePassword),
+      exhaustMap((action) =>
+        this.authservice.changePassword(action.userId, action.oldPassword, action.newPassword).pipe(
+          map(() =>
+            authAction.changePasswordSuccess(),
+          ),
+          catchError((error) => {
+            return of(
+              authAction.changePasswordFailure({
+                error: error.message || 'Change password failed',
+              }),
+            );
+          }),
+        ),
+      ),
+    );
+  });
 }
