@@ -24,6 +24,8 @@
     {{ job().salary }}
   </div>
   
+
+  @if(isAuthenticated$ | async){
   <div class="flex gap-3 mb-3">
     <button class="flex-1 bg-white text-black hover:bg-black hover:text-white border-2 border-black font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
       <span class="material-icons text-base">favorite_border</span>
@@ -34,6 +36,17 @@
       Track
     </button>
   </div>
+  }
+
+  @if(!(isAuthenticated$ | async)){
+    <div class="mb-3">
+      <a routerLink="/login" class="w-full block text-center bg-white text-black hover:bg-black hover:text-white border-2 border-black font-semibold py-2 px-4 transition-colors">
+        <span class="material-icons text-base align-middle">login</span>
+        Login to interact
+      </a>
+    </div>
+  }
+
   
   <a [href]="job().redirectUrl" target="_blank" class="block w-full text-center bg-black text-white hover:bg-white hover:text-black border-2 border-black uppercase tracking-wider font-semibold py-3 px-6 transition-colors">
     View full offer
