@@ -8,11 +8,23 @@ export interface authState{
 }
 
 
+const getUserFromLocalStorage = (): User | null => {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+        try {
+            return JSON.parse(userJson) as User;
+        } catch {
+            return null;
+        }
+    }
+    return null;
+};
+
 export const initialAuthState : authState = {
-    user : null,
+    user : getUserFromLocalStorage(),
     error : null,   
     loading : false,
-    isAuthenticated : false
+    isAuthenticated : getUserFromLocalStorage() !== null
 };
 
 

@@ -13,7 +13,7 @@
         [control]="$any(registerForm.get('firstName'))"
         placeholder="Enter your first name"
         icon="person"
-        errorMessage="First name is required"
+        [errorMessage]="getError('firstName')"
       />
 
       <app-form-input
@@ -23,7 +23,7 @@
         [control]="$any(registerForm.get('lastName'))"
         placeholder="Enter your last name"
         icon="person"
-        errorMessage="Last name is required"
+        [errorMessage]="getError('lastName')"
       />
 
       <app-form-input
@@ -33,7 +33,7 @@
         [control]="$any(registerForm.get('email'))"
         placeholder="Enter your email"
         icon="email"
-        errorMessage="Valid email is required"
+        [errorMessage]="getError('email')"
       />
 
       <app-form-input
@@ -43,7 +43,7 @@
         [control]="$any(registerForm.get('password'))"
         placeholder="Enter your password"
         icon="lock"
-        errorMessage="Password is required"
+        [errorMessage]="getError('password')"
       />
 
       @if (errorMessage$ | async; as error) {
@@ -66,7 +66,7 @@
 
       <div class="text-center pt-4 border-t-2 border-black mt-6">
         <p class="text-sm text-black">
-          Already have an account? 
+          Already have an account?
           <a routerLink="/login" class="font-bold underline hover:text-gray-700">Login here</a>
         </p>
       </div>

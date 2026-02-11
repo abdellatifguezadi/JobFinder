@@ -40,6 +40,28 @@ export class LoginPage {
       }));
     }
   }
+
+  getError(controlName: string): string {
+    const control = this.loginForm.get(controlName);
+
+    if (!control || !control.touched || control.valid) {
+      return '';
+    }
+
+    if (control.errors?.['required']) {
+      return 'Ce champ est obligatoire';
+    }
+
+    if (control.errors?.['email']) {
+      return 'Email non valide';
+    }
+
+    if (control.errors?.['minlength']) {
+      return `Minimum ${control.errors['minlength'].requiredLength} caractères`;
+    }
+
+    return 'Champ invalide';
+  }
 }
 
 

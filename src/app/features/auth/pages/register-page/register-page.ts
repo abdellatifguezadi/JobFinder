@@ -48,4 +48,26 @@ export class RegisterPage {
         }));
       }
   }
+
+  getError(controlName: string): string {
+    const control = this.registerForm.get(controlName);
+
+    if (!control || !control.touched || control.valid) {
+      return '';
+    }
+
+    if (control.errors?.['required']) {
+      return 'Ce champ est obligatoire';
+    }
+
+    if (control.errors?.['email']) {
+      return 'Email non valide';
+    }
+
+    if (control.errors?.['minlength']) {
+      return `Minimum ${control.errors['minlength'].requiredLength} caractères`;
+    }
+
+    return 'Champ invalide';
+  }
 }

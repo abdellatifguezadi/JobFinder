@@ -39,11 +39,38 @@ export const authReducer = createReducer(
         isAuthenticated: true
     })),
 
-    on(authAction.registerFailure , (state )=>({
+    on(authAction.registerFailure , (state, {error})=>({
         ...state ,
-        error : "register Failure",
+        error : error,
         loading : false
     })),
+
+    on(authAction.logout , (state) => ({
+        ...state,
+        user : null,
+        isAuthenticated: false,
+        error : null
+    })),
+
+    on(authAction.updateUser , (state) => ({
+        ...state,
+        loading : true,
+        error : null
+    })),
+
+    on(authAction.updateUserSuccess , (state , {user}) => ({
+        ...state,
+        user : user,
+        loading : false,
+        error : null
+    })),
+
+    on(authAction.updateUserFailure , (state , {error}) => ({
+        ...state,
+        loading : false,
+        error : error
+    }))
+
 
 
 )

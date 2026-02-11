@@ -1,0 +1,77 @@
+<div class="p-6 max-w-4xl mx-auto">
+  <!-- Profile Header -->
+  <div class="bg-white border-2 border-black p-8 mb-6 shadow-[4px_4px_0_black]">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-3xl font-bold text-black uppercase tracking-wide">My Profile</h1>
+      <button 
+        (click)="toggleEditMode()"
+        class="bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold py-2 px-6 transition-colors flex items-center gap-2"
+      >
+        <span class="material-icons">{{ isEditMode() ? 'close' : 'edit' }}</span>
+        {{ isEditMode() ? 'Cancel' : 'Edit' }}
+      </button>
+    </div>
+
+    @if (user$ | async; as user) {
+      <!-- View Mode -->
+      @if (!isEditMode()) {
+        <div class="space-y-6">
+          <!-- Avatar Section -->
+          <div class="flex items-center gap-6 pb-6 border-b-2 border-black">
+            <div class="w-24 h-24 bg-black border-2 border-black flex items-center justify-center">
+              <span class="material-icons text-white text-5xl">person</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-black">{{ user.firstName }} {{ user.lastName }}</h2>
+              <p class="text-gray-700">{{ user.email }}</p>
+            </div>
+          </div>
+
+          <!-- Personal Information -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="border-2 border-black p-4">
+              <label class="block text-sm font-bold mb-2 text-gray-700 uppercase">First Name</label>
+              <p class="text-lg font-semibold text-black">{{ user.firstName }}</p>
+            </div>
+
+            <div class="border-2 border-black p-4">
+              <label class="block text-sm font-bold mb-2 text-gray-700 uppercase">Last Name</label>
+              <p class="text-lg font-semibold text-black">{{ user.lastName }}</p>
+            </div>
+
+            <div class="border-2 border-black p-4 md:col-span-2">
+              <label class="block text-sm font-bold mb-2 text-gray-700 uppercase">Email</label>
+              <p class="text-lg font-semibold text-black">{{ user.email }}</p>
+            </div>
+
+            <div class="border-2 border-black p-4 md:col-span-2">
+              <label class="block text-sm font-bold mb-2 text-gray-700 uppercase">User ID</label>
+              <p class="text-lg font-semibold text-black">#{{ user.id }}</p>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Edit Mode -->
+      @if (isEditMode()) {
+        <app-profile-form 
+          (toggleEditMode)="toggleEditMode()"
+        ></app-profile-form>
+      }
+    }
+
+    <!-- Loading State -->
+    @if (loading$|async) {
+      <div class="flex justify-center items-center py-20">
+        <div class="border-4 border-black border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    }
+  </div>
+
+  <div class="bg-white border-2 border-black p-8 shadow-[4px_4px_0_black]">
+    <h2 class="text-2xl font-bold mb-6 text-black uppercase tracking-wide">Change Password</h2>
+
+    <app-password-form></app-password-form>
+
+  </div>
+</div>

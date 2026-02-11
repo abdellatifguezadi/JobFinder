@@ -45,4 +45,21 @@ export const  logout = createAction(
     '[logout]  logout' 
 );
 
+export const updateUser = createAction(
+    '[updateUser] update user',
+    props<{ user: User }>()
+);
+
+export const updateUserSuccess = createAction(
+    '[updateUser] update user success',
+    props<{ user: User }>()
+);
+
+export const updateUserFailure = createAction(
+    '[updateUser] update user failure',
+    props<{ error: string }>()
+);
+
+
+
 

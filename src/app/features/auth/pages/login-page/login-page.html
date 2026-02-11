@@ -13,7 +13,7 @@
         [control]="$any(loginForm.get('email'))"
         placeholder="Enter your email"
         icon="email"
-        errorMessage="Valid email is required"
+        [errorMessage]="getError('email')"
       />
 
       <app-form-input
@@ -23,7 +23,7 @@
         [control]="$any(loginForm.get('password'))"
         placeholder="Enter your password"
         icon="lock"
-        errorMessage="Password is required"
+        [errorMessage]="getError('password')"
       />
 
       @if (errorMessage$ | async; as error) {
@@ -46,7 +46,7 @@
 
       <div class="text-center pt-4 border-t-2 border-black mt-6">
         <p class="text-sm text-black">
-          Don't have an account? 
+          Don't have an account?
           <a routerLink="/register" class="font-bold underline hover:text-gray-700">Register here</a>
         </p>
       </div>
