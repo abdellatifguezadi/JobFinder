@@ -8,6 +8,8 @@ import { provideEffects } from '@ngrx/effects';
 import { usaJobsApiInterceptor } from './core/interceptors/UsaJobs-api.interceptor';
 import { authReducer } from './core/store/auth/auth.reducer';
 import { AuthEffects } from './core/store/auth/auth.effects';
+import { favoritesReducer } from './core/store/favorites/favorites.reducer';
+import { FavoritesEffects } from './core/store/favorites/favorites.effects';
 
 
 
@@ -16,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([usaJobsApiInterceptor])),
-    provideStore({auth : authReducer}),
-    provideEffects([AuthEffects])
+    provideStore({auth : authReducer, favorites: favoritesReducer}),
+    provideEffects([AuthEffects, FavoritesEffects])
 ]
 };

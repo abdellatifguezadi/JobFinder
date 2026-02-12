@@ -52,28 +52,28 @@
   ],
   "favoritesOffers": [
     {
-      "id": 1,
-      "userId": 1,
-      "offerId": "adzuna-101",
-      "title": "Angular Frontend Developer",
-      "company": "Tech Solutions",
-      "location": "Casablanca"
+      "userId": 4,
+      "offerId": "857337900",
+      "title": "Audiologist",
+      "company": "Veterans Health Administration",
+      "location": "Lawton, Oklahoma",
+      "id": 1
     },
     {
-      "id": 2,
       "userId": 1,
-      "offerId": "remotive-202",
-      "title": "Full Stack Java Developer",
-      "company": "Remote Corp",
-      "location": "Remote"
+      "offerId": "857338400",
+      "title": "Maintenance Mechanic",
+      "company": "Veterans Health Administration",
+      "location": "Mather AFB, California",
+      "id": 2
     },
     {
-      "id": 3,
-      "userId": 2,
-      "offerId": "adzuna-303",
-      "title": "Junior Web Developer",
-      "company": "Startup Hub",
-      "location": "Rabat"
+      "userId": 1,
+      "offerId": "857338300",
+      "title": "Audiologist",
+      "company": "Veterans Health Administration",
+      "location": "Lawton, Oklahoma",
+      "id": 3
     }
   ],
   "applications": [

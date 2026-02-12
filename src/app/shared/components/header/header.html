@@ -5,6 +5,11 @@
     </div>
     <nav class="flex gap-6 items-center">
       <a routerLink="/offers" class="text-black hover:underline font-semibold">Jobs</a>
+      @if (isAuthenticated$ | async) {
+        <a routerLink="/favorites" class="text-black hover:underline font-semibold flex items-center gap-1">
+          Favorites
+        </a>
+      }
       <a routerLink="/profile" class="text-black hover:underline font-semibold">Profile</a>
       
       @if (isAuthenticated$ | async) {

@@ -1,0 +1,43 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-4xl font-black text-black uppercase tracking-wider border-b-4 border-black inline-block pb-2 mb-4">
+      My Favorites
+    </h1>
+    <p class="text-gray-700">Jobs you've saved for later</p>
+  </div>
+
+  @if (loading$ | async) {
+    <div class="flex justify-center items-center py-12">
+      <div class="text-center">
+        <span class="material-icons text-6xl animate-spin text-black">refresh</span>
+        <p class="mt-4 text-black font-semibold">Loading favorites...</p>
+      </div>
+    </div>
+  }
+
+  @if (error$ | async; as error) {
+    <div class="bg-red-100 border-2 border-red-600 text-red-600 p-4 mb-4">
+      <span class="material-icons align-middle">error</span>
+      {{ error }}
+    </div>
+  }
+
+  @if ((favorites$ | async)?.length === 0 && !(loading$ | async)) {
+    <div class="text-center py-12">
+      <span class="material-icons text-6xl text-gray-400">favorite_border</span>
+      <p class="mt-4 text-gray-600 text-xl">No favorites yet</p>
+      <p class="text-gray-500 mt-2">Start adding jobs to your favorites!</p>
+      <a routerLink="/offers" class="inline-block mt-6 bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold py-3 px-6 uppercase tracking-wider transition-colors">
+        Browse Jobs
+      </a>
+    </div>
+  }
+
+  @if ((favorites$ | async) && (favorites$ | async)!.length > 0 && !(loading$ | async)) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (favorite of (favorites$ | async); track favorite.id) {
+        <app-favorite-item [favorite]="favorite" />
+      }
+    </div>
+  }
+</div>
