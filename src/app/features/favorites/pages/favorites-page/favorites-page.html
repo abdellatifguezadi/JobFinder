@@ -7,12 +7,7 @@
   </div>
 
   @if (loading$ | async) {
-    <div class="flex justify-center items-center py-12">
-      <div class="text-center">
-        <span class="material-icons text-6xl animate-spin text-black">refresh</span>
-        <p class="mt-4 text-black font-semibold">Loading favorites...</p>
-      </div>
-    </div>
+    <app-spinner message="Loading favorites..." />
   }
 
   @if (error$ | async; as error) {

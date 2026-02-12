@@ -3,10 +3,11 @@ import { OffersItem } from '../../components/offers-item/offers-item';
 import { JobService } from '../../../../core/services/offers/offres.service';
 import { JobOffer } from '../../../../core/model/job-offer';
 import { FormsModule } from '@angular/forms';
+import { Spinner } from '../../../../shared/components/spinner/spinner';
 
 @Component({
   selector: 'app-offers-list',
-  imports: [OffersItem, FormsModule],
+  imports: [OffersItem, FormsModule, Spinner],
   templateUrl: './offers-list.html',
   styleUrl: './offers-list.css',
 })

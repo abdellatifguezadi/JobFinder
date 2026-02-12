@@ -8,10 +8,11 @@ import * as authSelectors from '../../../../core/store/auth/auth.selectors';
 import { AsyncPipe } from '@angular/common';
 import { FavoriteItem } from '../../components/favorite-item/favorite-item';
 import { RouterLink } from '@angular/router';
+import { Spinner } from '../../../../shared/components/spinner/spinner';
 
 @Component({
   selector: 'app-favorites-page',
-  imports: [AsyncPipe, FavoriteItem, RouterLink],
+  imports: [AsyncPipe, FavoriteItem, RouterLink, Spinner],
   templateUrl: './favorites-page.html',
   styleUrl: './favorites-page.css'
 })
