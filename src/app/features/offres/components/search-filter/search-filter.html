@@ -1,0 +1,49 @@
+<div class="bg-white border-2 border-black p-6 mb-6 shadow-[4px_4px_0_black]">
+  <h2 class="text-2xl font-bold mb-4 text-black uppercase tracking-wide">Search Job Offers</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div>
+      <label for="searchTitle" class="block text-sm font-bold mb-2 text-black">Title?</label>
+      <input 
+        id="searchTitle"
+        type="text" 
+        [(ngModel)]="searchTitle"
+        placeholder="e.g: developer, designer..."
+        class="w-full border-2 border-black px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+      />
+    </div>
+    
+    <div>
+      <label for="searchLocation" class="block text-sm font-bold mb-2 text-black">Location?</label>
+      <input 
+        id="searchLocation"
+        type="text" 
+        [(ngModel)]="searchLocation"
+        placeholder="e.g: Sydney, Melbourne..."
+        class="w-full border-2 border-black px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+      />
+    </div>
+
+    <div>
+      <label for="resultsPerPage" class="block text-sm font-bold mb-2 text-black">Results per page</label>
+      <select 
+        id="resultsPerPage"
+        [(ngModel)]="resultsPerPage"
+        (ngModelChange)="handleResultsPerPageChange()"
+        class="w-full border-2 border-black px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black bg-white cursor-pointer"
+      >
+        @for (option of resultsPerPageOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <button 
+    (click)="handleSearch()"
+    class="mt-4 bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold py-3 px-8 uppercase tracking-wider transition-colors flex items-center gap-2"
+  >
+    <span class="material-icons">search</span>
+    Search
+  </button>
+</div>

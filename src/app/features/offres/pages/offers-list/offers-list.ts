@@ -4,10 +4,11 @@ import { JobService } from '../../../../core/services/offers/offres.service';
 import { JobOffer } from '../../../../core/model/job-offer';
 import { FormsModule } from '@angular/forms';
 import { Spinner } from '../../../../shared/components/spinner/spinner';
+import { SearchFilter } from '../../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-offers-list',
-  imports: [OffersItem, FormsModule, Spinner],
+  imports: [OffersItem, FormsModule, Spinner, SearchFilter],
   templateUrl: './offers-list.html',
   styleUrl: './offers-list.css',
 })
@@ -17,11 +18,8 @@ export class OffersList implements OnInit {
   
   currentPage = signal(1);
   resultsPerPage = signal(10);
-  resultsPerPageOptions = [5, 10, 20, 50];
   searchTitle = signal('');
   searchLocation = signal('');
-
-
 
   constructor(private jobService: JobService) {}
 
@@ -50,7 +48,15 @@ export class OffersList implements OnInit {
       });
   }
 
-  onSearch() {
+  onSearch(searchParams: { title: string; location: string }) {
+    this.searchTitle.set(searchParams.title);
+    this.searchLocation.set(searchParams.location);
+    this.currentPage.set(1);
+    this.loadJobs();
+  }
+
+  onResultsPerPageChange(perPage: number) {
+    this.resultsPerPage.set(perPage);
     this.currentPage.set(1);
     this.loadJobs();
   }
@@ -59,10 +65,5 @@ export class OffersList implements OnInit {
     this.currentPage.set(page);
     this.loadJobs();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  onResultsPerPageChange() {
-    this.currentPage.set(1);
-    this.loadJobs();
   }
 }
