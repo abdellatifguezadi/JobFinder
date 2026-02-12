@@ -2,6 +2,7 @@ import { Inject, inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../services/auth/auth.service';
 import * as authAction from './auth.actions';
+import * as favoritesActions from '../favorites/favorites.actions';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -68,6 +69,13 @@ export class AuthEffects {
       ),
     { dispatch: false },
   );
+
+  loadFavoritesOnAuth$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(authAction.loginSucces, authAction.registerSucces),
+      map((action) => favoritesActions.loadFavorites({ userId: action.user.id }))
+    );
+  });
 
 
 

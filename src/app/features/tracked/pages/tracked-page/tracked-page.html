@@ -1,0 +1,43 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-4xl font-black text-black uppercase tracking-wider border-b-4 border-black inline-block pb-2 mb-4">
+      Tracked Applications
+    </h1>
+    <p class="text-gray-700">Track and manage your job applications</p>
+  </div>
+
+  <div class="flex gap-4 mb-6 flex-wrap">
+    <button class="bg-black text-white hover:bg-white hover:text-black border-2 border-black font-semibold py-2 px-6 transition-colors">
+      All
+    </button>
+    <button class="bg-white text-black hover:bg-yellow-600 hover:text-white border-2 border-black font-semibold py-2 px-6 transition-colors flex items-center gap-2">
+      <span class="material-icons text-base">schedule</span>
+      Pending
+    </button>
+    <button class="bg-white text-black hover:bg-green-600 hover:text-white border-2 border-black font-semibold py-2 px-6 transition-colors flex items-center gap-2">
+      <span class="material-icons text-base">check_circle</span>
+      Accepted
+    </button>
+    <button class="bg-white text-black hover:bg-red-600 hover:text-white border-2 border-black font-semibold py-2 px-6 transition-colors flex items-center gap-2">
+      <span class="material-icons text-base">cancel</span>
+      Rejected
+    </button>
+  </div>
+
+  <!-- Empty State -->
+  <div class="text-center py-12 bg-white border-2 border-black p-8">
+    <span class="material-icons text-6xl text-gray-400">track_changes</span>
+    <p class="mt-4 text-gray-600 text-xl">No tracked applications yet</p>
+    <p class="text-gray-500 mt-2">Start tracking jobs to manage your applications!</p>
+    <a routerLink="/offers" class="inline-block mt-6 bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold py-3 px-6 uppercase tracking-wider transition-colors">
+      Browse Jobs
+    </a>
+  </div>
+
+ 
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (tracked of (tracked$| async); track tracked.id) {
+        <app-tracked-item [tracked]="tracked"></app-tracked-item>
+    }
+  </div>
+</div>
