@@ -34,7 +34,7 @@
           
           <div class="flex gap-2">
             @for (page of [currentPage() - 1, currentPage(), currentPage() + 1]; track page) {
-              @if (page > 0) {
+              @if (page > 0 && !(page === currentPage() + 1 && (allJobs().length < resultsPerPage() || loading()))) {
                 <button 
                   (click)="onPageChange(page)"
                   [class.bg-black]="page === currentPage()"

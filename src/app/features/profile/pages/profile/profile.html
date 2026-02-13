@@ -1,7 +1,6 @@
 <div class="p-6 max-w-4xl mx-auto">
 
   <app-title-text [title]="'My Profile'" [titleDescription]="'Manage your personal information and settings'"></app-title-text>
-  <!-- Profile Header -->
   <div class="bg-white border-2 border-black p-8 mb-6 shadow-[4px_4px_0_black]">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-black uppercase tracking-wide">My Profile</h1>
@@ -15,10 +14,8 @@
     </div>
 
     @if (user$ | async; as user) {
-      <!-- View Mode -->
       @if (!isEditMode()) {
         <div class="space-y-6">
-          <!-- Avatar Section -->
           <div class="flex items-center gap-6 pb-6 border-b-2 border-black">
             <div class="w-24 h-24 bg-black border-2 border-black flex items-center justify-center">
               <span class="material-icons text-white text-5xl">person</span>
@@ -29,7 +26,6 @@
             </div>
           </div>
 
-          <!-- Personal Information -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="border-2 border-black p-4">
               <label class="block text-sm font-bold mb-2 text-gray-700 uppercase">First Name</label>
@@ -54,7 +50,6 @@
         </div>
       }
 
-      <!-- Edit Mode -->
       @if (isEditMode()) {
         <app-profile-form 
           (toggleEditMode)="toggleEditMode()"
@@ -62,7 +57,6 @@
       }
     }
 
-    <!-- Loading State -->
     @if (loading$|async) {
       <app-spinner message="Loading profile..." />
     }
