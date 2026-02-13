@@ -1,0 +1,72 @@
+<div class="max-w-md mx-auto">
+  @if (!showConfirmation) {
+    <form [formGroup]="deleteForm" (ngSubmit)="onDeleteSubmit()">
+      <div class="space-y-4">
+        <div class="bg-red-50 border-2 border-red-600 p-4">
+          <div class="flex items-start">
+            <svg class="w-6 h-6 text-red-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <div>
+              <h3 class="font-bold text-red-800 mb-2">⚠️ ATTENTION - DELETE ACCOUNT</h3>
+              <p class="text-sm text-red-700">
+                This action is <strong>permanent</strong> and cannot be undone. All your data, including favorites and tracked jobs, will be permanently deleted.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-bold mb-2 text-black uppercase">
+            Confirm Your Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="w-full border-2 border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"
+            placeholder="Enter your password to continue"
+          />
+
+          @if(getError('password')){
+            <div class="text-red-600 text-sm mt-1">{{getError('password')}}</div>
+          }
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="deleteForm.invalid || (loading$ | async)"
+          class="w-full bg-red-600 text-white font-bold py-3 px-6 hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+        >
+          @if (loading$ | async) {
+            <span>PROCESSING...</span>
+          } @else {
+            <span>DELETE MY ACCOUNT</span>
+          }
+        </button>
+      </div>
+    </form>
+  } @else {
+    <div class="bg-yellow-50 border-2 border-yellow-600 p-6">
+      <h3 class="font-bold text-xl text-yellow-800 mb-4">⚠️ FINAL CONFIRMATION</h3>
+      <p class="text-yellow-700 mb-6">
+        Are you absolutely sure? This is your last chance to cancel. Your account will be permanently deleted.
+      </p>
+      <div class="flex gap-4">
+        <button
+          (click)="cancelDelete()"
+          class="flex-1 bg-white text-black font-bold py-3 px-6 border-2 border-black hover:bg-gray-100 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+        >
+          CANCEL
+        </button>
+        <button
+          (click)="confirmDelete()"
+          [disabled]="loading$ | async"
+          class="flex-1 bg-red-600 text-white font-bold py-3 px-6 hover:bg-red-700 disabled:bg-gray-300 border-2 border-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+        >
+          YES, DELETE
+        </button>
+      </div>
+    </div>
+  }
+</div>

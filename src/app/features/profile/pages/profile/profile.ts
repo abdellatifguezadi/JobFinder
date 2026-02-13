@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfileForm } from '../../components/profile-form/profile-form';
 import { PasswordForm } from '../../components/password-form/password-form';
+import { DeleteForm } from '../../components/delete-form/delete-form';
 import { Spinner } from '../../../../shared/components/spinner/spinner';
 import { TitleText } from "../../../../shared/components/title-text/title-text";
 
 @Component({
   selector: 'app-profile',
-  imports: [AsyncPipe, ReactiveFormsModule, ProfileForm, PasswordForm, Spinner, TitleText],
+  imports: [AsyncPipe, ReactiveFormsModule, ProfileForm, PasswordForm, DeleteForm, Spinner, TitleText],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })

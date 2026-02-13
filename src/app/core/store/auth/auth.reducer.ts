@@ -87,5 +87,27 @@ export const authReducer = createReducer(
         ...state,
         loading: false,
         error: error
+    })),
+
+
+    on(authAction.deleteUser ,(state) => ({
+        ...state,
+         loading: true,
+         error: null,
+    })), 
+    
+    on(authAction.deletUserSucces , (state)=> ({
+        ...state,
+        loading : false,
+        error : null,
+        user : null,
+        isAuthenticated: false 
+    })) , 
+
+    on(authAction.deleteUserFailure , (state , {error})=> ({
+        ...state,
+        error : error,
+        loading : false
     }))
+
 )

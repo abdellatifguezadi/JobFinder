@@ -70,8 +70,7 @@ export class AuthService {
     );
   }
 
-
-
-
-
+  deleteUser(userId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/users/${userId}`);
+  }
 }

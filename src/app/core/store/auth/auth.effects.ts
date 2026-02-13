@@ -146,4 +146,35 @@ export class AuthEffects {
       ),
     );
   });
+
+
+  deletUser$ = createEffect(()=>{
+      return this.action$.pipe(
+        ofType(authAction.deleteUser),
+        exhaustMap((action)=>
+        this.authservice.deleteUser(action.userId).pipe(
+          map(()=>{
+            this.toastService.success("Account deleted successfully!");
+            return authAction.deletUserSucces()
+          }),
+          catchError((err)=>{
+            this.toastService.error('Failed to delete account. Please try again.');
+            return of(authAction.deleteUserFailure(err))
+          })
+        )
+        )
+      )
+  })
+
+  deleteUserSuccess$ = createEffect(
+    () =>
+      this.action$.pipe(
+        ofType(authAction.deletUserSucces),
+        tap(() => {
+          localStorage.removeItem('user');
+          this.router.navigate(['/']);
+        })
+      ),
+    { dispatch: false }
+  );
 }

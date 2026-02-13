@@ -67,6 +67,21 @@ export const changePasswordFailure = createAction(
     props<{ error: string }>() 
 );
 
+export const deleteUser = createAction(
+    '[Auth] delete user',
+    props<{userId : number}>()
+)
+
+
+export const deletUserSucces = createAction(
+    '[Auth] delete user succes',
+)
+
+export const deleteUserFailure = createAction(
+    '[Auth] delet user Failure',
+    props<{error : string}>()
+)
+
 
 
 
