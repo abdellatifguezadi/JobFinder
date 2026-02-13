@@ -2,13 +2,15 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Favorite } from '../../model/favorite';
+import {environment} from '../../../env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoritesService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/favoritesOffers';
+  private apiUrl = `${environment.apiUrl}/favoritesOffers`;
+  
 
   getFavoritesByUserId(userId: number): Observable<Favorite[]> {
     return this.http.get<Favorite[]>(`${this.apiUrl}?userId=${userId}`);

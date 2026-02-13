@@ -212,6 +212,30 @@
       "status": "accepted",
       "dateAdded": "2026-02-13T13:46:11.372Z",
       "id": 10
+    },
+    {
+      "userId": 3,
+      "offerId": "857686200",
+      "apiSource": "usajobs",
+      "title": "Registered Nurse - Nurse Coordinator-Nurse Manager",
+      "company": "Veterans Health Administration",
+      "location": "Salt Lake City, Utah",
+      "url": "https://www.usajobs.gov:443/job/857686200",
+      "status": "pending",
+      "dateAdded": "2026-02-13T14:35:13.264Z",
+      "id": 11
+    },
+    {
+      "userId": 3,
+      "offerId": "857686100",
+      "apiSource": "usajobs",
+      "title": "Budget Analyst",
+      "company": "Executive Office for U.S. Attorneys and the Office of the U.S. Attorneys",
+      "location": "San Antonio, Texas",
+      "url": "https://www.usajobs.gov:443/job/857686100",
+      "status": "pending",
+      "dateAdded": "2026-02-13T14:35:15.024Z",
+      "id": 12
     }
   ]
 }

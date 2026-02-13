@@ -5,13 +5,15 @@ import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/auth/auth.selectors';
 import { ToastService } from '../toast/toast.service';
+import {environment} from '../../../env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrackedOffersService {
   
-  private ApiUrl = 'http://localhost:3000/applications';
+
+  private ApiUrl = `${environment.apiUrl}/applications`;
 
   private trackedOffresSubject = new BehaviorSubject<Tracked[]>([]);
   store = inject(Store);

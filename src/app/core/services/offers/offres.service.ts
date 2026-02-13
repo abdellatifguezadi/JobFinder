@@ -2,11 +2,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { JobOffer } from '../../model/job-offer';
+import {environment} from '../../../env';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
 
-  private API_URL = 'https://data.usajobs.gov/api/search';
+  private API_URL = environment.baseUrlUsaJobs;
 
   constructor(private http: HttpClient) {}
 

@@ -5,13 +5,14 @@ import { AuthResponse } from '../../dto/auth-response';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest, updateProfile } from '../../dto/register-request';
 import { User } from '../../model/user';
+import {environment} from '../../../env'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl;
 
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http
