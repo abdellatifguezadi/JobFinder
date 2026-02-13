@@ -8,10 +8,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ProfileForm } from '../../components/profile-form/profile-form';
 import { PasswordForm } from '../../components/password-form/password-form';
 import { Spinner } from '../../../../shared/components/spinner/spinner';
+import { TitleText } from "../../../../shared/components/title-text/title-text";
 
 @Component({
   selector: 'app-profile',
-  imports: [AsyncPipe , ReactiveFormsModule , ProfileForm , PasswordForm, Spinner],
+  imports: [AsyncPipe, ReactiveFormsModule, ProfileForm, PasswordForm, Spinner, TitleText],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })

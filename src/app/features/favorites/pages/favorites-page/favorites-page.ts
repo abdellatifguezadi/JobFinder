@@ -9,10 +9,11 @@ import { AsyncPipe } from '@angular/common';
 import { FavoriteItem } from '../../components/favorite-item/favorite-item';
 import { RouterLink } from '@angular/router';
 import { Spinner } from '../../../../shared/components/spinner/spinner';
+import { TitleText } from "../../../../shared/components/title-text/title-text";
 
 @Component({
   selector: 'app-favorites-page',
-  imports: [AsyncPipe, FavoriteItem, RouterLink, Spinner],
+  imports: [AsyncPipe, FavoriteItem, RouterLink, Spinner, TitleText],
   templateUrl: './favorites-page.html',
   styleUrl: './favorites-page.css'
 })

@@ -3,10 +3,11 @@ import { TrackedOffersService } from '../../../../core/services/tracked/tracked-
 import { AsyncPipe } from '@angular/common';
 import { TrackedItem } from "../../components/tracked-item/tracked-item";
 import { RouterLink } from '@angular/router';
+import { TitleText } from "../../../../shared/components/title-text/title-text";
 
 @Component({
   selector: 'app-tracked-page',
-  imports: [AsyncPipe, TrackedItem, RouterLink],
+  imports: [AsyncPipe, TrackedItem, RouterLink, TitleText],
   templateUrl: './tracked-page.html',
   styleUrl: './tracked-page.css'
 })
