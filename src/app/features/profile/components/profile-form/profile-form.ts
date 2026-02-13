@@ -1,11 +1,12 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { User } from '../../../../core/model/user';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { selectAuthLoading, selectUser } from '../../../../core/store/auth/auth.selectors';
 import { updateUser } from '../../../../core/store/auth/auth.actions';
 import { AsyncPipe } from '@angular/common';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-profile-form',
@@ -19,17 +20,25 @@ export class ProfileForm {
 
   private store = inject(Store);
   private fb = inject(FormBuilder);
+  authService = inject(AuthService);
 
   user$: Observable<User | null>;
   loading$: Observable<boolean>;
   profileForm: FormGroup;
   private currentUser: User | null = null;
 
+
+
   constructor() {
 
 
     this.user$ = this.store.select(selectUser);
-          this.loading$ = this.store.select(selectAuthLoading);
+    console.log(this.user$.pipe(
+      tap((user) => console.log(user),
+      )
+    ).subscribe());
+    
+        this.loading$ = this.store.select(selectAuthLoading);
 
 
         this.profileForm = this.fb.group({
@@ -53,14 +62,18 @@ export class ProfileForm {
   }
 
 
+
  onProfileSubmit(){
-  if(this.profileForm.valid && this.currentUser){
+  if(this.profileForm.valid && this.currentUser){    
+
       const updatedUser: User = {
         ...this.currentUser,
         firstName: this.profileForm.value.firstName,
         lastName: this.profileForm.value.lastName,
-        email: this.profileForm.value.email
+        email: this.profileForm.value.email,
       };
+
+      console.log(updatedUser);
 
       this.store.dispatch(updateUser({
         user: updatedUser

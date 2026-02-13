@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
-import { Tracked } from '../../model/tracked';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, tap, throwError } from 'rxjs';
+import { Tracked , trackedRequest} from '../../model/tracked';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/auth/auth.selectors';
@@ -44,7 +44,7 @@ export class TrackedOffersService {
   }
 
 
-  track(offre : Tracked){
+  track(offre : trackedRequest){
     return this.http.post<Tracked>(this.ApiUrl,offre).pipe(
       tap(saved =>{
         this.trackedOffresSubject.next([
@@ -75,6 +75,23 @@ export class TrackedOffersService {
       })
     )
   }
+
+
+ updateTrack(id : number , status : 'accepted' | 'rejected' | 'pending'){
+  return this.http.patch(`${this.ApiUrl}/${id}`, {status}).pipe(
+    tap(()=>{
+      const update = this.trackedOffresSubject.getValue().map(
+        o => o.id === id ? {...o , status} : o
+      );
+      this.trackedOffresSubject.next(update);
+      this.toastService.success(`Status updated to ${status}!`);
+    }),
+    catchError(()=>{
+      this.toastService.error('Failed to update track status');
+      return EMPTY
+    })
+  )
+ }
 
 
 }

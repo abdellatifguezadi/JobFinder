@@ -37,14 +37,26 @@
   </div>
 
   <div class="flex gap-3 mb-3">
-    <button class="flex-1 bg-green-600 text-white hover:bg-white hover:text-green-600 border-2 border-green-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
+    @if(tracked().status !== 'pending'){
+    <button  (click)="pending(tracked().id)" class="flex-1 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-orange-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
+      <span class="material-icons text-base">pending</span>
+      Pending
+    </button>
+    }
+
+    @if(tracked().status !== 'accepted'){
+    <button (click)="accept(tracked().id)" class="flex-1 bg-green-600 text-white hover:bg-white hover:text-green-600 border-2 border-green-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
       <span class="material-icons text-base">check_circle</span>
       Accept
     </button>
-    <button class="flex-1 bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
+    }
+
+    @if(tracked().status !== 'rejected'){
+    <button  (click)="reject(tracked().id)" class="flex-1 bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
       <span class="material-icons text-base">cancel</span>
       Reject
     </button>
+    }
   </div>
 
   <div class="flex gap-3">
@@ -55,7 +67,7 @@
       <span class="material-icons text-base">open_in_new</span>
       View Offer
     </a>
-    <button class="bg-white text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-600 font-semibold py-3 px-4 transition-colors flex items-center justify-center">
+    <button (click)="untrack(tracked().id)" class="bg-white text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-600 font-semibold py-3 px-4 transition-colors flex items-center justify-center">
       <span class="material-icons text-base">delete</span>
     </button>
   </div>

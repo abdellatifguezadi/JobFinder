@@ -6,12 +6,14 @@ import { loginGuard } from './core/guard/login.guard';
 import { AuthGuard } from './core/guard/auth.guard';
 import { Profile } from './features/profile/pages/profile/profile';
 import { FavoritesPage } from './features/favorites/pages/favorites-page/favorites-page';
+import { TrackedPage } from './features/tracked/pages/tracked-page/tracked-page';
 
 export const routes: Routes = [
   { path: 'login', component: LoginPage , canActivate: [loginGuard] },
   { path: 'register', component: RegisterPage, canActivate : [loginGuard] },
   { path: 'profile', component: Profile , canActivate : [AuthGuard]},
   { path: 'favorites', component: FavoritesPage, canActivate: [AuthGuard]},
+  {path: 'track' , component: TrackedPage , canActivate: [AuthGuard]},
   { path: 'offers', component: OffersList},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

@@ -3,7 +3,8 @@ import { LoginRequest } from '../../dto/login-request';
 import { catchError, map, Observable, throwError, switchMap } from 'rxjs';
 import { AuthResponse } from '../../dto/auth-response';
 import { HttpClient } from '@angular/common/http';
-import { RegisterRequest } from '../../dto/register-request';
+import { RegisterRequest, updateProfile } from '../../dto/register-request';
+import { User } from '../../model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -48,8 +49,8 @@ export class AuthService {
     );
   }
 
-  updateUser(user: AuthResponse): Observable<AuthResponse> {
-    return this.http.put<AuthResponse>(`${this.apiUrl}/users/${user.id}`, user);
+  updateUser(user: updateProfile , userId : number): Observable<AuthResponse> {
+    return this.http.patch<AuthResponse>(`${this.apiUrl}/users/${userId}`, user);
   }
 
   changePassword(userId: number, oldPassword: string, newPassword: string): Observable<AuthResponse> {
@@ -67,4 +68,9 @@ export class AuthService {
       })
     );
   }
+
+
+
+
+
 }

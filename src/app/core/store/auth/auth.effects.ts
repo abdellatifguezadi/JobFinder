@@ -22,6 +22,7 @@ export class AuthEffects {
         this.authservice.login(action.credentials).pipe(
           map((response) => {
             this.toastService.success(`Welcome back, ${response.firstName}!`);
+            console.log(response)
             return authAction.loginSucces({
               user: response,
             });
@@ -69,6 +70,8 @@ export class AuthEffects {
         ofType(authAction.loginSucces, authAction.registerSucces, authAction.updateUserSuccess),
         tap((action) => {
           const { password, ...safeUser } = action.user;
+          // console.log(action);
+          
           localStorage.setItem('user', JSON.stringify(safeUser));
           this.router.navigate(['/profile']);
         }),
@@ -102,11 +105,15 @@ export class AuthEffects {
     return this.action$.pipe(
       ofType(authAction.updateUser),
       exhaustMap((action) =>
-        this.authservice.updateUser(action.user).pipe(
-          map((response) =>
-            authAction.updateUserSuccess({
+        this.authservice.updateUser(action.user , action.user.id).pipe(
+          map((response) =>{
+            this.toastService.success("User updated successfully!");
+            return authAction.updateUserSuccess({
               user: response,
-            }),
+            })
+          }
+            
+
           ),
           catchError(() => {
             return of(

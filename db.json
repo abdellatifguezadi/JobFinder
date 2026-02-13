@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "firstName": "abdellatif",
+      "firstName": "abdellatif2",
       "lastName": "guezadi",
       "email": "abdellatif@gmail.com",
       "password": "123456"
@@ -19,7 +19,7 @@
       "firstName": "leila",
       "lastName": "guezadi",
       "email": "leila@test.com",
-      "password": "123456"
+      "password": "123456789"
     },
     {
       "id": 4,
@@ -74,6 +74,22 @@
       "company": "Federal Communications Commission",
       "location": "District of Columbia, District of Columbia",
       "id": 4
+    },
+    {
+      "userId": 1,
+      "offerId": "857660400",
+      "title": "Theater Cashier ( Flix)",
+      "company": "Commander, Navy Installations Command",
+      "location": "Rota, Spain",
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "offerId": "857675600",
+      "title": "Records & Information Management Specialist",
+      "company": "Veterans Health Administration",
+      "location": "Bedford, Massachusetts",
+      "id": 6
     }
   ],
   "applications": [
@@ -97,7 +113,7 @@
       "company": "Veterans Health Administration",
       "location": "Pittsburgh, Pennsylvania",
       "url": "https://www.usajobs.gov:443/job/857472000",
-      "status": "pending",
+      "status": "accepted",
       "dateAdded": "2026-02-12T13:14:44.520Z",
       "id": 2
     },
@@ -172,6 +188,30 @@
       "status": "pending",
       "dateAdded": "2026-02-12T13:34:33.186Z",
       "id": 8
+    },
+    {
+      "userId": 1,
+      "offerId": "857660400",
+      "apiSource": "usajobs",
+      "title": "Theater Cashier ( Flix)",
+      "company": "Commander, Navy Installations Command",
+      "location": "Rota, Spain",
+      "url": "https://www.usajobs.gov:443/job/857660400",
+      "status": "pending",
+      "dateAdded": "2026-02-13T09:17:59.703Z",
+      "id": 9
+    },
+    {
+      "userId": 3,
+      "offerId": "857675600",
+      "apiSource": "usajobs",
+      "title": "Records & Information Management Specialist",
+      "company": "Veterans Health Administration",
+      "location": "Bedford, Massachusetts",
+      "url": "https://www.usajobs.gov:443/job/857675600",
+      "status": "accepted",
+      "dateAdded": "2026-02-13T13:46:11.372Z",
+      "id": 10
     }
   ]
 }
