@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Tracked } from '../../model/tracked';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../store/auth/auth.selectors';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class TrackedOffersService {
 
   private trackedOffresSubject = new BehaviorSubject<Tracked[]>([]);
   store = inject(Store);
+  private toastService = inject(ToastService);
 
   currentUser$ = this.store.select(selectUser);
 
@@ -48,7 +50,12 @@ export class TrackedOffersService {
         this.trackedOffresSubject.next([
           ...this.trackedOffresSubject.getValue(),
           saved
-        ])
+        ]);
+        this.toastService.success('Job tracked successfully! ');
+      }),
+      catchError(error => {
+        this.toastService.error('Failed to track job');
+        return throwError(() => error);
       })
     )
   }
@@ -60,6 +67,11 @@ export class TrackedOffersService {
         this.trackedOffresSubject.next(
           this.trackedOffresSubject.getValue().filter(o => o.id !== id)
         );
+        this.toastService.success('Job untracked!');
+      }),
+      catchError(error => {
+        this.toastService.error('Failed to untrack job');
+        return throwError(() => error);
       })
     )
   }

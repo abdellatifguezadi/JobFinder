@@ -1,10 +1,11 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { OffersItem } from '../../components/offers-item/offers-item';
 import { JobService } from '../../../../core/services/offers/offres.service';
 import { JobOffer } from '../../../../core/model/job-offer';
 import { FormsModule } from '@angular/forms';
 import { Spinner } from '../../../../shared/components/spinner/spinner';
 import { SearchFilter } from '../../components/search-filter/search-filter';
+import { ToastService } from '../../../../core/services/toast/toast.service';
 
 @Component({
   selector: 'app-offers-list',
@@ -13,6 +14,9 @@ import { SearchFilter } from '../../components/search-filter/search-filter';
   styleUrl: './offers-list.css',
 })
 export class OffersList implements OnInit {
+  private jobService = inject(JobService);
+  private toastService = inject(ToastService);
+
   allJobs = signal<JobOffer[]>([]);
   loading = signal(false);
   
@@ -20,8 +24,6 @@ export class OffersList implements OnInit {
   resultsPerPage = signal(10);
   searchTitle = signal('');
   searchLocation = signal('');
-
-  constructor(private jobService: JobService) {}
 
   ngOnInit() {
     this.loadJobs();
@@ -43,6 +45,7 @@ export class OffersList implements OnInit {
         },
         error: (err) => {
           console.error('Error loading job offers:', err);
+          this.toastService.error('Failed to load job offers. Please try again.');
           this.loading.set(false);
         }
       });

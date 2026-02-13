@@ -5,12 +5,14 @@ import * as authAction from './auth.actions';
 import * as favoritesActions from '../favorites/favorites.actions';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast/toast.service';
 
 @Injectable()
 export class AuthEffects {
   private action$ = inject(Actions);
   private authservice = inject(AuthService);
   private router = inject(Router);
+  private toastService = inject(ToastService);
 
 
   login$ = createEffect(() => {
@@ -18,12 +20,14 @@ export class AuthEffects {
       ofType(authAction.login),
       exhaustMap((action) =>
         this.authservice.login(action.credentials).pipe(
-          map((response) =>
-            authAction.loginSucces({
+          map((response) => {
+            this.toastService.success(`Welcome back, ${response.firstName}!`);
+            return authAction.loginSucces({
               user: response,
-            }),
-          ),
+            });
+          }),
           catchError(() => {
+            this.toastService.error('Login failed. Please check your credentials.');
             return of(
               authAction.loginFailure({
                 error: 'Invalid email or password',
@@ -40,12 +44,14 @@ export class AuthEffects {
       ofType(authAction.register),
       exhaustMap((action) =>
         this.authservice.register(action.request).pipe(
-          map((response) =>
-            authAction.registerSucces({
+          map((response) => {
+            this.toastService.success(`Account created! Welcome, ${response.firstName}!`);
+            return authAction.registerSucces({
               user: response,
-            }),
-          ),
+            });
+          }),
           catchError((error) => {
+            this.toastService.error('Registration failed. Email might already exist.');
             return of(
               authAction.registerFailure({
                 error: error.message || 'Registration failed',

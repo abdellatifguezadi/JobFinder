@@ -60,20 +60,20 @@
       "id": 1
     },
     {
-      "userId": 1,
-      "offerId": "857475900",
-      "title": "Physician - Psychiatrist",
-      "company": "Veterans Health Administration",
-      "location": "Multiple Locations",
-      "id": 2
-    },
-    {
       "userId": 4,
       "offerId": "857475900",
       "title": "Physician - Psychiatrist",
       "company": "Veterans Health Administration",
       "location": "Multiple Locations",
       "id": 3
+    },
+    {
+      "userId": 1,
+      "offerId": "857523200",
+      "title": "HR Specialist (Payroll & Benefits)",
+      "company": "Federal Communications Commission",
+      "location": "District of Columbia, District of Columbia",
+      "id": 4
     }
   ],
   "applications": [
