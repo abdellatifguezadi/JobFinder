@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "firstName": "abdellatif2",
+      "firstName": "abdellatif",
       "lastName": "guezadi",
       "email": "abdellatif@gmail.com",
       "password": "123456"
@@ -41,6 +41,13 @@
       "lastName": "Barrett",
       "firstName": "Olga",
       "id": 7
+    },
+    {
+      "email": "fasi@mailinator.com",
+      "password": "123456",
+      "lastName": "Baker",
+      "firstName": "Lamar",
+      "id": 8
     }
   ],
   "favoritesOffers": [
@@ -229,6 +236,30 @@
       "status": "pending",
       "dateAdded": "2026-02-13T14:35:15.024Z",
       "id": 12
+    },
+    {
+      "userId": 6,
+      "offerId": "857774600",
+      "apiSource": "usajobs",
+      "title": "Nurse Manager - Unit 6AB",
+      "company": "Veterans Health Administration",
+      "location": "Montrose, New York",
+      "url": "https://www.usajobs.gov:443/job/857774600",
+      "status": "pending",
+      "dateAdded": "2026-02-13T20:02:01.623Z",
+      "id": 13
+    },
+    {
+      "userId": 6,
+      "offerId": "857774800",
+      "apiSource": "usajobs",
+      "title": "Medical Support Assistant (Advanced)",
+      "company": "Veterans Health Administration",
+      "location": "Columbia, Missouri",
+      "url": "https://www.usajobs.gov:443/job/857774800",
+      "status": "pending",
+      "dateAdded": "2026-02-13T20:02:24.000Z",
+      "id": 14
     }
   ]
 }

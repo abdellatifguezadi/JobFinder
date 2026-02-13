@@ -116,6 +116,7 @@ export class AuthEffects {
 
           ),
           catchError(() => {
+            this.toastService.error("Failed to update user. Please try again.");
             return of(
               authAction.updateUserFailure({
                 error: 'Update user Failure',
@@ -132,10 +133,14 @@ export class AuthEffects {
       ofType(authAction.changePassword),
       exhaustMap((action) =>
         this.authservice.changePassword(action.userId, action.oldPassword, action.newPassword).pipe(
-          map(() =>
-            authAction.changePasswordSuccess(),
+          map(() =>{
+            this.toastService.success("password updated successfully!")
+            return authAction.changePasswordSuccess()
+          }
+            
           ),
           catchError((error) => {
+            this.toastService.error("Failed to change password. Please try again.");
             return of(
               authAction.changePasswordFailure({
                 error: error.message || 'Change password failed',
