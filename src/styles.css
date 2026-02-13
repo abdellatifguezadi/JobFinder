@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+.custom-snackbar {
+  font-family: inherit !important;
+  font-weight: 700 !important;
+  border: 3px solid black !important;
+  box-shadow: 4px 4px 0 black !important;
+  border-radius: 0 !important;
+  margin: 20px !important;
+}
+
+.success-snackbar {
+  background-color: #0ddf1f !important;
+}
+
+.success-snackbar .mdc-snackbar__label {
+  color: black !important;
+}
+
+.error-snackbar {
+  background-color: #dd2c2c !important;
+}
+
+.error-snackbar .mdc-snackbar__label {
+  color: black !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button {
+  color: black !important;
+  font-weight: bold !important;
+}

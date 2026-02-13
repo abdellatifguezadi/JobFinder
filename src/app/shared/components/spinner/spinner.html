@@ -1,0 +1,10 @@
+<div class="flex justify-center items-center py-20">
+  <div class="text-center">
+    <div class="border-4 border-black border-t-transparent rounded-full animate-spin mx-auto w-16 h-16"></div>
+    @if (message()) {
+      <p class="mt-4 text-black font-semibold text-lg">
+        {{ message() }}
+      </p>
+    }
+  </div>
+</div>

@@ -1,6 +1,73 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-  <app-offers-item></app-offers-item>
-  <app-offers-item></app-offers-item>
-  <app-offers-item></app-offers-item>
-  <app-offers-item></app-offers-item>
+<div class="p-6 max-w-7xl mx-auto">
+
+  <app-search-filter 
+    (onSearch)="onSearch($event)"
+    (onResultsPerPageChange)="onResultsPerPageChange($event)"
+  />
+
+  @if (loading()) {
+    <app-spinner message="Loading job offers..." />
+  }
+
+
+  @if (!loading() && allJobs().length > 0) {
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      @for (job of allJobs(); track job.redirectUrl) {
+        <app-offers-item [job]="job"></app-offers-item>
+      }
+    </div>
+
+ 
+    <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0_black]">
+      <div class="flex items-center justify-between">
+        <button 
+          (click)="onPageChange(currentPage() - 1)"
+          [disabled]="currentPage() === 1 || loading()"
+          class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-bold py-2 px-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          <span class="material-icons">chevron_left</span>
+          Previous
+        </button>
+        
+        <div class="flex items-center gap-4">
+          <span class="font-bold text-black">Page {{ currentPage() }}</span>
+          
+          <div class="flex gap-2">
+            @for (page of [currentPage() - 1, currentPage(), currentPage() + 1]; track page) {
+              @if (page > 0 && !(page === currentPage() + 1 && (allJobs().length < resultsPerPage() || loading()))) {
+                <button 
+                  (click)="onPageChange(page)"
+                  [class.bg-black]="page === currentPage()"
+                  [class.text-white]="page === currentPage()"
+                  [class.bg-white]="page !== currentPage()"
+                  [class.text-black]="page !== currentPage()"
+                  class="border-2 border-black font-bold py-2 px-4 hover:bg-black hover:text-white transition-colors min-w-10"
+                >
+                  {{ page }}
+                </button>
+              }
+            }
+          </div>
+        </div>
+        
+        <button 
+          (click)="onPageChange(currentPage() + 1)"
+          [disabled]="allJobs().length < resultsPerPage() || loading()"
+          class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-bold py-2 px-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          Next
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  }
+
+
+  @if (!loading() && allJobs().length === 0) {
+    <div class="bg-white border-2 border-black p-12 text-center shadow-[4px_4px_0_black]">
+      <span class="material-icons text-6xl mb-4">work_off</span>
+      <h3 class="text-2xl font-bold text-black mb-2">No job offers found</h3>
+      <p class="text-black">Try modifying your search criteria</p>
+    </div>
+  }
 </div>

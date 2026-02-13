@@ -1,0 +1,87 @@
+import { createAction, props } from "@ngrx/store";
+import { LoginRequest } from "../../dto/login-request";
+import { User } from "../../model/user";
+import { RegisterRequest } from "../../dto/register-request";
+
+export const login = createAction(
+    '[login] login',
+    props<{ credentials: LoginRequest }>()
+);
+
+export const loginSucces = createAction(
+    '[login] login succes',
+    props<{user : User}>()
+); 
+
+
+export const loginFailure = createAction(
+    '[login] login failure ',
+    props<{error : string}>()
+);
+
+export const register = createAction(
+    '[register] register',
+    props<{ request: RegisterRequest }>()
+);
+
+export const registerSucces = createAction(
+    '[register] register succes',
+    props<{user : User}>()
+); 
+
+
+export const registerFailure = createAction(
+    '[register] register failure ',
+    props<{error : string}>()
+);
+
+export const  logout = createAction(
+    '[logout]  logout' 
+);
+
+export const updateUser = createAction(
+    '[updateUser] update user',
+    props<{ user: User }>()
+);
+
+export const updateUserSuccess = createAction(
+    '[updateUser] update user success',
+    props<{ user: User }>()
+);
+
+export const updateUserFailure = createAction(
+    '[updateUser] update user failure',
+    props<{ error: string }>()
+);
+
+export const changePassword = createAction(
+    '[Auth] Change Password',
+    props<{ userId: number, oldPassword: string, newPassword: string }>()
+);
+export const changePasswordSuccess = createAction(
+    '[Auth] Change Password Success'
+);
+
+export const changePasswordFailure = createAction(
+    '[Auth] Change Password Failure',
+    props<{ error: string }>() 
+);
+
+export const deleteUser = createAction(
+    '[Auth] delete user',
+    props<{userId : number}>()
+)
+
+
+export const deletUserSucces = createAction(
+    '[Auth] delete user succes',
+)
+
+export const deleteUserFailure = createAction(
+    '[Auth] delet user Failure',
+    props<{error : string}>()
+)
+
+
+
+

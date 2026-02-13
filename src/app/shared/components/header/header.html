@@ -3,10 +3,29 @@
     <div class="flex items-center gap-3">
       <img src="logo.jpg" alt="JobFinder Logo" class="h-16 w-auto">
     </div>
-    <nav class="flex gap-6">
-      <a href="#" class="text-black hover:underline font-semibold">Offres</a>
-      <a href="#" class="text-black hover:underline font-semibold">Entreprises</a>
-      <a href="#" class="text-black hover:underline font-semibold">Contact</a>
+    <nav class="flex gap-6 items-center">
+      <a routerLink="/offers" class="text-black hover:underline font-semibold">Jobs</a>
+      @if (isAuthenticated$ | async) {
+        <a routerLink="/favorites" class="text-black hover:underline font-semibold flex items-center gap-1">
+          Favorites
+        </a>
+        <a routerLink="/track" class="text-black hover:underline font-semibold flex items-center gap-1">
+          Tracked
+        </a>
+      }
+      <a routerLink="/profile" class="text-black hover:underline font-semibold">Profile</a>
+      
+      @if (isAuthenticated$ | async) {
+        <span class="text-black font-semibold">Welcome, {{ (user$ | async)?.firstName }}</span>
+        <button 
+          (click)="onLogout()" 
+          class="bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 font-semibold py-2 px-4 transition-colors">
+          Logout
+        </button>
+      } @else {
+        <a routerLink="/login" class="bg-black text-white hover:bg-white hover:text-black border-2 border-black font-semibold py-2 px-4 transition-colors">Login</a>
+        <a routerLink="/register" class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-semibold py-2 px-4 transition-colors">Register</a>
+      }
     </nav>
   </div>
 </header>

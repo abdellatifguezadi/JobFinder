@@ -1,0 +1,74 @@
+<div class="w-full border-2 border-black bg-white p-5 transition-all hover:shadow-[8px_8px_0_black] hover:-translate-x-1 hover:-translate-y-1">
+  <div class="border-b-2 border-black pb-3 mb-4">
+    <h3 class="text-lg font-bold text-black mb-2">{{ tracked().title }}</h3>
+    <span class="text-sm text-black">{{ tracked().company || 'Not specified' }}</span>
+  </div>
+  
+  <div class="flex gap-4 mb-3 text-xs text-black">
+    <span class="flex items-center gap-1">
+      <span class="material-icons text-base">location_on</span>
+      {{ tracked().location || 'Not specified' }}
+    </span>
+    <span class="flex items-center gap-1">
+      <span class="material-icons text-base">calendar_today</span>
+      {{ tracked().dateAdded | date: 'dd/MM/yyyy HH:mm' }}
+    </span>
+  </div>
+
+  <div class="mb-4">
+    @if(tracked().status === 'pending') {
+      <span class="inline-flex items-center gap-1 bg-yellow-100 border-2 border-yellow-600 text-yellow-800 px-3 py-1 font-semibold text-xs uppercase">
+        <span class="material-icons text-sm">schedule</span>
+        Pending
+      </span>
+    }
+    @if(tracked().status === 'accepted') {
+      <span class="inline-flex items-center gap-1 bg-green-100 border-2 border-green-600 text-green-800 px-3 py-1 font-semibold text-xs uppercase">
+        <span class="material-icons text-sm">check_circle</span>
+        Accepted
+      </span>
+    }
+    @if(tracked().status === 'rejected') {
+      <span class="inline-flex items-center gap-1 bg-red-100 border-2 border-red-600 text-red-800 px-3 py-1 font-semibold text-xs uppercase">
+        <span class="material-icons text-sm">cancel</span>
+        Rejected
+      </span>
+    }
+  </div>
+
+  <div class="flex gap-3 mb-3">
+    @if(tracked().status !== 'pending'){
+    <button  (click)="pending(tracked().id)" class="flex-1 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border-2 border-orange-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
+      <span class="material-icons text-base">pending</span>
+      Pending
+    </button>
+    }
+
+    @if(tracked().status !== 'accepted'){
+    <button (click)="accept(tracked().id)" class="flex-1 bg-green-600 text-white hover:bg-white hover:text-green-600 border-2 border-green-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
+      <span class="material-icons text-base">check_circle</span>
+      Accept
+    </button>
+    }
+
+    @if(tracked().status !== 'rejected'){
+    <button  (click)="reject(tracked().id)" class="flex-1 bg-red-600 text-white hover:bg-white hover:text-red-600 border-2 border-red-600 font-semibold py-2 px-4 transition-colors flex items-center justify-center gap-2">
+      <span class="material-icons text-base">cancel</span>
+      Reject
+    </button>
+    }
+  </div>
+
+  <div class="flex gap-3">
+    <a 
+      [href]="tracked().url" 
+      target="_blank" 
+      class="flex-1 text-center bg-black text-white hover:bg-white hover:text-black border-2 border-black uppercase tracking-wider font-semibold py-3 px-6 transition-colors flex items-center justify-center gap-2">
+      <span class="material-icons text-base">open_in_new</span>
+      View Offer
+    </a>
+    <button (click)="untrack(tracked().id)" class="bg-white text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-600 font-semibold py-3 px-4 transition-colors flex items-center justify-center">
+      <span class="material-icons text-base">delete</span>
+    </button>
+  </div>
+</div>
