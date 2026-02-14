@@ -18,21 +18,21 @@
     </div>
 
  
-    <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0_black]">
-      <div class="flex items-center justify-between">
+    <div class="bg-white border-2 border-black p-2 sm:p-4 shadow-[4px_4px_0_black]">
+      <div class="flex items-center justify-between gap-1 sm:gap-2">
         <button 
           (click)="onPageChange(currentPage() - 1)"
           [disabled]="currentPage() === 1 || loading()"
-          class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-bold py-2 px-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-bold py-1 px-1.5 sm:py-2 sm:px-4 md:px-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 sm:gap-2 text-xs sm:text-base"
         >
-          <span class="material-icons">chevron_left</span>
-          Previous
+          <span class="material-icons text-sm sm:text-base">chevron_left</span>
+          <span class="hidden sm:inline">Previous</span>
         </button>
         
-        <div class="flex items-center gap-4">
-          <span class="font-bold text-black">Page {{ currentPage() }}</span>
+        <div class="flex items-center gap-1 sm:gap-4">
+          <span class="font-bold text-black text-xs sm:text-base hidden md:inline">Page {{ currentPage() }}</span>
           
-          <div class="flex gap-2">
+          <div class="flex gap-1 sm:gap-2">
             @for (page of [currentPage() - 1, currentPage(), currentPage() + 1]; track page) {
               @if (page > 0 && !(page === currentPage() + 1 && (allJobs().length < resultsPerPage() || loading()))) {
                 <button 
@@ -41,7 +41,7 @@
                   [class.text-white]="page === currentPage()"
                   [class.bg-white]="page !== currentPage()"
                   [class.text-black]="page !== currentPage()"
-                  class="border-2 border-black font-bold py-2 px-4 hover:bg-black hover:text-white transition-colors min-w-10"
+                  class="border-2 border-black font-bold py-1 px-2 sm:py-2 sm:px-4 hover:bg-black hover:text-white transition-colors min-w-8 sm:min-w-10 text-xs sm:text-base"
                 >
                   {{ page }}
                 </button>
@@ -53,10 +53,10 @@
         <button 
           (click)="onPageChange(currentPage() + 1)"
           [disabled]="allJobs().length < resultsPerPage() || loading()"
-          class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-bold py-2 px-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          class="bg-white text-black hover:bg-black hover:text-white border-2 border-black font-bold py-1 px-1.5 sm:py-2 sm:px-4 md:px-6 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 sm:gap-2 text-xs sm:text-base"
         >
-          Next
-          <span class="material-icons">chevron_right</span>
+          <span class="hidden sm:inline">Next</span>
+          <span class="material-icons text-sm sm:text-base">chevron_right</span>
         </button>
       </div>
     </div>

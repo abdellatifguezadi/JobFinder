@@ -16,6 +16,7 @@ import { User } from '../../../core/model/user';
 export class Header {
   isAuthenticated$: Observable<boolean>;
   user$: Observable<User | null>;
+  isMenuOpen = false;
 
   constructor(private store: Store) {
     this.isAuthenticated$ = this.store.select(selectAuthenticated);
@@ -24,5 +25,13 @@ export class Header {
 
   onLogout(): void {
     this.store.dispatch(logout());
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
   }
 }

@@ -90,6 +90,14 @@
       "company": "Veterans Health Administration",
       "location": "Bedford, Massachusetts",
       "id": 6
+    },
+    {
+      "userId": 6,
+      "offerId": "856435900",
+      "title": "CHILD & YOUTH PROGRAM ASSISTANT (CDC), CY-01/02/RFT, ALL CAMPS",
+      "company": "U.S. Marine Corps",
+      "location": "Camp Foster, Japan",
+      "id": 7
     }
   ],
   "applications": [
@@ -260,6 +268,18 @@
       "status": "pending",
       "dateAdded": "2026-02-13T20:02:24.000Z",
       "id": 14
+    },
+    {
+      "userId": 6,
+      "offerId": "856435900",
+      "apiSource": "usajobs",
+      "title": "CHILD & YOUTH PROGRAM ASSISTANT (CDC), CY-01/02/RFT, ALL CAMPS",
+      "company": "U.S. Marine Corps",
+      "location": "Camp Foster, Japan",
+      "url": "https://www.usajobs.gov:443/job/856435900",
+      "status": "pending",
+      "dateAdded": "2026-02-14T12:52:24.040Z",
+      "id": 15
     }
   ]
 }
