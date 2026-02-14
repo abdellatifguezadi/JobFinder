@@ -9,6 +9,7 @@ export interface Tracked {
     url: string;
     status: 'accepted' | 'rejected' | 'pending';
     dateAdded: string;
+    notes: string;
 }
 
 export interface trackedRequest{
@@ -21,4 +22,5 @@ export interface trackedRequest{
     url: string;
     status: 'accepted' | 'rejected' | 'pending';
     dateAdded: string;
+    notes: string;
 }

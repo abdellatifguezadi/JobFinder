@@ -58,3 +58,11 @@
     View full offer
   </a>
 </div>
+
+@if(showNoteModal) {
+  <app-note-modal 
+    [jobTitle]="modalJobTitle" 
+    [company]="modalCompany"
+    (onClose)="onModalClose($event)">
+  </app-note-modal>
+}
