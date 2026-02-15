@@ -63,6 +63,5 @@ export const favoritesReducer = createReducer(
     error: error
   })),
 
-  // Clear favorites on logout
   on(authActions.logout, () => initialFavoritesState)
 );

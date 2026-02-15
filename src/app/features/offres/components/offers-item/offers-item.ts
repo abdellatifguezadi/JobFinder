@@ -10,10 +10,11 @@ import { User } from '../../../../core/model/user';
 import { Favorite } from '../../../../core/model/favorite';
 import { RouterLink } from '@angular/router';
 import { TrackedOffersService } from '../../../../core/services/tracked/tracked-offers.service';
+import { NoteModal } from '../../../tracked/components/note-modal/note-modal';
 
 @Component({
   selector: 'app-offers-item',
-  imports: [DatePipe, AsyncPipe, RouterLink],
+  imports: [DatePipe, AsyncPipe, RouterLink, NoteModal],
   templateUrl: './offers-item.html',
   styleUrl: './offers-item.css',
 })
@@ -28,6 +29,10 @@ export class OffersItem implements OnInit {
   favorite$!: Observable<Favorite | undefined>;
   isTracked$!: Observable<boolean>;
   private currentUser: User | null = null;
+  
+  showNoteModal = false;
+  modalJobTitle = '';
+  modalCompany = '';
 
   constructor(){
     this.isAuthenticated$ = this.store.select(authSelectore.selectAuthenticated);
@@ -75,9 +80,20 @@ export class OffersItem implements OnInit {
 
     if(tracked){
       this.trackedService.untrack(tracked.id!).subscribe();
-    }else {
+    } else {
+      this.modalJobTitle = job.title;
+      this.modalCompany = job.company;
+      this.showNoteModal = true;
+    }
+  }
+
+  onModalClose(note: string | null) {
+    this.showNoteModal = false;
+    
+    if (note) {
+      const job = this.job();
       const trackedData = {
-        userId: this.currentUser.id,
+        userId: this.currentUser!.id,
         offerId: job.id,
         apiSource: 'usajobs',
         title: job.title,
@@ -85,10 +101,11 @@ export class OffersItem implements OnInit {
         location: job.location,
         url: job.redirectUrl,
         status: 'pending' as const,
-        dateAdded: new Date().toISOString()
+        dateAdded: new Date().toISOString(),
+        notes: note
       };
       this.trackedService.track(trackedData).subscribe();
-      console.log('Tracking job:', trackedData);
+      console.log('Tracking job with note:', trackedData);
     }
   }
 
